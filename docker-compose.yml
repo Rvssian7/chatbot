@@ -1,0 +1,46 @@
+version: '3.8'
+services: 
+  nginx:
+    image: nginx:alpine
+    container_name: chatbot-nginx
+    restart: unless-stopped
+    ports:
+      - 9000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks: 
+      - chatbot 
+  app:
+    build:
+      args:
+         user: user 
+         uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: chatbot 
+    container_name: chatbot-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/php:/usr/local/etc/php
+    networks:
+      - chatbot 
+  mysql:
+    image: mysql:5.7
+    container_name: chatbot-db
+    restart: unless-stopped
+    environment: 
+      MYSQL_DATABASE: chatbot 
+      MYSQL_USER: chatbot 
+      MYSQL_PASSWORD: secret 
+      MYSQL_ROOT_PASSWORD: admin.root
+    ports:
+      - 33068:3306
+    volumes:
+      - ./docker-compose/mysql:/var/lib/mysql
+    networks:
+      - chatbot 
+networks:
+    chatbot:
