@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Conversations\Menu;
+use App\Http\Conversations\HabitacionConversation;
 use BotMan\BotMan\BotMan;
-use BotMan\BotMan\Messages\Incoming\Answer;
+use App\Http\Conversations\ReservaConversation;
 
 class ChatBotController extends Controller
 {
-    public function handle() {
+    public function handle()
+    {
 
         $botman = app('botman');
-  
-        $botman->hears('{message}', function(BotMan $botman,$message) {
-            $botman->startConversation(new Menu); 
+
+        $botman->hears('reserva', function (BotMan $bot){
+           $bot->startConversation(new ReservaConversation());
         });
-  
+
+        $botman->hears('habitacion', function (BotMan $bot){
+            $bot->startConversation(new HabitacionConversation());
+        });
+
         $botman->listen();
     }
-
 }
