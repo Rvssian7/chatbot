@@ -2,6 +2,7 @@
 
 namespace App\Http\Conversations;
 
+use App\Http\Controllers\ConversationController;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
@@ -48,7 +49,7 @@ class ReservaConversation extends Conversation
 									$data['cuantas_noches'] =  $answer->getValue();
 									$this->ask('Cuantas Personas', function ($answer) use (&$data) {
 									    $data['cuantas_personas'] =  $answer->getValue();
-									    $this->reservarHabitacion($data);				
+									    $this->reservarHabitacion($data);
 									    $this->say('En minutos recibira un correo con la confirmacion de su reserva, muchas gracias');
 									});
 								});
@@ -61,5 +62,8 @@ class ReservaConversation extends Conversation
 	}
 
 
-	public function reservarHabitacion($data){}
+	public function reservarHabitacion($data){
+	    ConversationController::save($data,'RESERVA');
+    }
+
 }

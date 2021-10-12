@@ -21,3 +21,7 @@ Route::match(['get', 'post'], '/botman', 'ChatBotController@handle');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+    Route::resource('conversation', 'ConversationController');
+});

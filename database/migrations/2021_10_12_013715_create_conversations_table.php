@@ -11,10 +11,12 @@ class CreateConversationsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['RESERVA', 'SERVICIO A LA HABITACION', 'TRANSPORTE', 'HOUSEKEEPING']);
+            $table->enum('status', ['PENDIENTE', 'FINALIZDO', 'EN PROCESO'])->default('PENDIENTE');
+            $table->json('data');
             $table->timestamps();
         });
     }
@@ -24,8 +26,7 @@ class CreateConversationsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('conversations');
     }
 }

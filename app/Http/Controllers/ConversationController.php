@@ -12,9 +12,9 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $convesations = Conversation::all();
+        return view('conversations.list', compact('convesations'));
     }
 
     /**
@@ -22,64 +22,69 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Conversation  $conversation
+     * @param \App\Conversation $conversation
      * @return \Illuminate\Http\Response
      */
-    public function show(Conversation $conversation)
-    {
+    public function show(Conversation $conversation) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Conversation  $conversation
+     * @param \App\Conversation $conversation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Conversation $conversation)
-    {
+    public function edit(Conversation $conversation) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Conversation  $conversation
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Conversation $conversation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conversation $conversation)
-    {
+    public function update(Request $request, Conversation $conversation) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Conversation  $conversation
+     * @param \App\Conversation $conversation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Conversation $conversation)
-    {
+    public function destroy(Conversation $conversation) {
         //
+    }
+
+    static function save($data,$type){
+        $conversation = new Conversation();
+        $conversation->type = $type;
+        $conversation->data = json_encode($data);
+        if($conversation->save()){
+            return redirect()->back()->withErrors(['Mesnaje'=>'guardado cor exito']);
+        }else{
+            return redirect()->route('home');
+        }
     }
 }
