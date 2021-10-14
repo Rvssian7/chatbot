@@ -15,6 +15,7 @@ class CreateConversationsTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['RESERVA', 'SERVICIO A LA HABITACION', 'TRANSPORTE', 'HOUSEKEEPING']);
+            $table->string('subtype');
             $table->enum('status', ['PENDIENTE', 'FINALIZDO', 'EN PROCESO'])->default('PENDIENTE');
             $table->json('data');
             $table->timestamps();

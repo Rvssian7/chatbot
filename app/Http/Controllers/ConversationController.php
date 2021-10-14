@@ -77,9 +77,10 @@ class ConversationController extends Controller
         //
     }
 
-    static function save($data,$type){
+    static function save($data,$type,$subtype){
         $conversation = new Conversation();
         $conversation->type = $type;
+        $conversation->subtype= $subtype;
         $conversation->data = json_encode($data);
         if($conversation->save()){
             return redirect()->back()->withErrors(['Mesnaje'=>'guardado cor exito']);

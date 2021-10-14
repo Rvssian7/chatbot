@@ -1,1 +1,13 @@
 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
+
+instalar xammp
+instalar composer
+git clon [url] en el directorio  C/xampp/htdocs/
+cd chatbot entra a la carpeta del proyecto
+composer install
+crear archivo .env copiando el .env.example
+abrir xampp y encender apaceh y mysql
+crear base de datos con el nombre chatbot y la codificacion utf8_general_ci en el navegador colocar http://localhost/phpmyadmin/
+en la consola dentro del proyecto ejecutar el comando php artisan migrate --seed
+ejecuatar el comando php artisan serve y te da la url para abrir el proyecto  http://127.0.0.1:8000
+para acceder al panel es  http://127.0.0.1:8000/login

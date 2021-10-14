@@ -29,7 +29,7 @@
                                 @foreach($conversations as $item)
                                     <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->type}}</td>
+                                    <td>{{$item->type}}<br>{{$item->subtype}}</td>
                                     <td>
                                         <ul>
                                             @if($item->data !== null)
