@@ -26,8 +26,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
                                 @foreach($conversations as $item)
+                                    <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->type}}</td>
                                     <td>
@@ -44,8 +44,8 @@
                                     <td>
                                         <a href="#" class="btn btn-success" title="Cambiar de stado">Change</a>
                                     </td>
-                                @endforeach
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
