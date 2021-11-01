@@ -102,9 +102,7 @@ class ReservaConversation extends Conversation
             });
         });
     }
-//    public function validate($type){
-//
-//    }
+
     public function saveReservation($data, $type, $subtype) {
         ConversationController::save($data, $type, $subtype);
     }
