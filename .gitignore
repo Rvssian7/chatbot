@@ -13,3 +13,4 @@ yarn-error.log
 /docker-compose/mysql/*
 .idea/*
 .idea/workspace.xml
+.idea/symfony2.xml

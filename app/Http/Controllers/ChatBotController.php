@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Conversations\HabitacionConversation;
+use App\Http\Conversations\HousekeepingConversation;
 use App\Http\Conversations\TransporteConversation;
 use BotMan\BotMan\BotMan;
 use App\Http\Conversations\ReservaConversation;
@@ -23,6 +24,10 @@ class ChatBotController extends Controller
 
         $botman->hears('transporte', function (BotMan $bot) {
             $bot->startConversation(new TransporteConversation());
+        });
+
+        $botman->hears('house', function (BotMan $bot) {
+            $bot->startConversation(new HousekeepingConversation());
         });
 
         $botman->listen();
