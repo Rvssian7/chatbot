@@ -88,4 +88,16 @@ class ConversationController extends Controller
             return redirect()->route('home');
         }
     }
+
+    public function finalizar($id){
+        $conversation = Conversation::find($id);
+        $conversation->status = "FINALIZADO";
+        if($conversation->save()){
+            flash('Finalizado satisfactoriamente.')->success();
+            return redirect()->back();
+        }else{
+            flash('El servicio no pudo ser finalizado.')->error();
+            return redirect()->back();
+        }
+    }
 }
