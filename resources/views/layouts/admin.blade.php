@@ -255,7 +255,10 @@
             <div class="col-md-12">
                 @include('flash::message')
             </div>
-            @yield('content')
+{{--            <div class="container">--}}
+
+                @yield('content')
+{{--            </div>--}}
         </div>
     </div>
 </section>

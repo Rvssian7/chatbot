@@ -25,5 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('conversation', 'ConversationController');
-    Route::get('conversation/change/{id}',[ConversationController::class,'finalizar'])->name('conversation.finalizar');
+    Route::get('conversation/change/{id}/{estado}',[ConversationController::class,'changeStatus'])->name('conversation.finalizar');
 });

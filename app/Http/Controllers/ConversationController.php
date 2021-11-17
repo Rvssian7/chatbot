@@ -89,9 +89,9 @@ class ConversationController extends Controller
         }
     }
 
-    public function finalizar($id){
+    public function changeStatus($id,$status){
         $conversation = Conversation::find($id);
-        $conversation->status = "FINALIZADO";
+        $conversation->status = $status;
         if($conversation->save()){
             flash('Finalizado satisfactoriamente.')->success();
             return redirect()->back();
