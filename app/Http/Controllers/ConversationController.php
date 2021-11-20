@@ -100,4 +100,8 @@ class ConversationController extends Controller
             return redirect()->back();
         }
     }
+
+    public function chatIndex(){
+        return view('chat');
+    }
 }

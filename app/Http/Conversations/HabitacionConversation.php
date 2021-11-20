@@ -47,8 +47,19 @@ class HabitacionConversation extends Conversation
             ]);
 
         $this->ask($question, function ($answer) {
-            if ($answer->getValue() !== $this->values[14])
+            if ($answer->getValue() === $this->values[14]){
+                $type = $answer->getValue();
+                $data = [];
+                $this->ask('Numero de habitación', function ($answer) use (&$data, $type) {
+                    $data['habitacion'] = $answer->getValue();
+                    $this->ask('Cual es tu nombre ?', function ($answer) use (&$data, $type) {
+                        $data['nombre'] = $answer->getValue();
+                        return redirect()->route('conversation.chat');
+                    });
+                });
+            }else{
                 $this->generica($answer->getValue());
+            }
         });
     }
 

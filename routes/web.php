@@ -22,7 +22,7 @@ Route::match(['get', 'post'], '/botman', 'ChatBotController@handle');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/chat',[ConversationController::class,'chatIndex'])->name('conversation.chat');
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('conversation', 'ConversationController');
     Route::get('conversation/change/{id}/{estado}',[ConversationController::class,'changeStatus'])->name('conversation.finalizar');
